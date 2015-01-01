@@ -17,16 +17,14 @@ var AppModel = Backbone.Model.extend({
     })
 */
     params.library.on('play', function(song){
-      console.log("Detected first play, from first song.");
       this.set('currentSong', song);
-      console.log(this.get('currentSong'));
-      //should be 4 Page Letter;
     }, this);
 
+
     params.library.on('enqueue', function(song){
-      //call enqueue method
-      //maybe get songqueue instead
+      console.log('enqueue called');
       this.get('songQueue').add(song);
+      this.get('songQueue').trigger('change',this);
     }, this);
   }
 
